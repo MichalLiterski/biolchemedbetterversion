@@ -1,0 +1,12 @@
+@mixin products {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 460px;
+	background-size: cover;
+	background-position: center;
+	border-radius: 8px;
+	transition: transform .3s;
+	cursor: pointer;
+}

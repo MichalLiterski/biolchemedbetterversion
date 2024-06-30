@@ -1,0 +1,579 @@
+@use 'reset';
+@use 'colors' as *;
+@use 'mixins' as *;
+
+body {
+	background-color: $white-color;
+	font-family: 'Balsamiq Sans', sans-serif;
+}
+
+.wrapper {
+	width: 100%;
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
+.section-padding {
+	padding: 6rem 0;
+}
+
+// NAWIGACJA
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: $white-color;
+	z-index: 999;
+}
+
+.nav {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 90px;
+	width: 100%;
+	background-color: $white-color;
+
+	.logo-link {
+		margin: 0 2rem;
+	}
+
+	&__logo {
+		width: 180px;
+	}
+
+	&__list {
+		display: flex;
+
+		&-item {
+			font-size: 2rem;
+			padding: 1.5rem 1.4rem;
+			margin: 0.5rem;
+			font-weight: bold;
+			color: $black-color;
+			transition: color 0.3s;
+
+			&:hover {
+				color: $secondary-color;
+			}
+		}
+	}
+
+	&__buttons {
+		margin: 0 2rem;
+
+		button {
+			height: 45px;
+			padding: 0 2rem;
+			margin: 0 0.5rem;
+			font-size: 1.7rem;
+			font-weight: bold;
+			border-radius: 5px;
+			color: $white-color;
+			background-color: $secondary-color;
+			transition: background-color 0.3s;
+
+			&:hover {
+				background-color: $secondary-hover;
+			}
+		}
+	}
+
+	&__burger-icon {
+		display: none;
+		padding: 3rem;
+		font-size: 3rem;
+		cursor: pointer;
+		background-color: $white-color;
+		transition: color 0.3s;
+
+		&:hover {
+			color: $secondary-color;
+		}
+	}
+}
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	right: -450px;
+	height: 100%;
+	width: 300px;
+	background-color: $secondary-color;
+	transition: transform 0.4s;
+	z-index: 999;
+
+	.fa-solid {
+		position: absolute;
+		top: -10px;
+		right: 0px;
+		margin: 0.5rem 1rem;
+		padding: 2rem;
+		font-size: 3rem;
+		transition: color 0.3s, transform 0.3s;
+
+		&:hover {
+			color: $first-color;
+			transform: rotate(180deg);
+		}
+	}
+
+	&__list {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		height: 400px;
+
+		&-item {
+			margin: 2rem 1.5rem;
+			font-size: 2.2rem;
+
+			a {
+				width: 100%;
+				padding: 1rem 2rem;
+				font-weight: bold;
+				color: $black-color;
+				border-bottom: 1px solid gray;
+				transition: color 0.3s;
+
+				&:hover {
+					color: $first-color;
+				}
+			}
+		}
+	}
+
+	.login-buttons {
+		margin: 0 2rem;
+		text-align: center;
+
+		button {
+			padding: 2rem 3rem;
+			margin: 0.5rem 0.5rem;
+			font-size: 2rem;
+			font-weight: bold;
+			border-radius: 5px;
+			color: $black-color;
+			background-color: $secondary-hover;
+			transition: background-color 0.3s;
+
+			&:hover {
+				background-color: $first-color;
+			}
+		}
+	}
+}
+
+.active {
+	transform: translateX(-450px);
+}
+
+// MAIN
+
+.main {
+	position: relative;
+	background-color: $first-color;
+	padding: 3rem 0;
+	z-index: 1;
+
+	.descriptions {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		text-align: center;
+
+		&__box {
+			width: 400px;
+			height: 330px;
+			margin: 0 2rem;
+			line-height: 2.4rem;
+			letter-spacing: .5px;
+
+			img {
+				width: 90px;
+				margin-bottom: 1rem;
+			}
+
+			h2 {
+				font-size: 2.1rem;
+				text-transform: uppercase;
+				margin-bottom: 2rem;
+			}
+
+			p {
+				font-size: 1.6rem;
+				color: $text-color;
+			}
+		}
+	}
+
+	.products {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin: 5rem 0rem;
+
+		&__box {
+			position: relative;
+			width: 50%;
+			margin: 2rem;
+			border-radius: 8px;
+			text-align: center;
+			overflow: hidden;
+
+			&:first-child {
+				box-shadow: -10px 10px 10px lightgray;
+				margin: 0 2rem;
+			}
+
+			&:last-child {
+				box-shadow: 10px 10px 10px lightgray;
+				margin: 0 2rem;
+			}
+
+			&-img1 {
+				@include products;
+				background-image: url('../img/chemia\ bg.png');
+			}
+			&-img2 {
+				@include products;
+				background-image: url('../img/biologia\ bg.png');
+			}
+
+			&-img1:hover,
+			&-img2:hover {
+				transform: scale(1.05);
+			}
+
+			&-heading {
+				padding: 3rem;
+				font-size: 3rem;
+				font-weight: normal;
+				color: $black-color;
+				text-transform: uppercase;
+				cursor: default;
+			}
+
+			&-person {
+				font-size: 2.2rem;
+				font-weight: bold;
+				color: $text-color;
+				cursor: default;
+
+				i {
+					padding-right: 1rem;
+				}
+			}
+
+			&-link {
+				margin-top: 5.5rem;
+				padding: 2rem 2.5rem;
+				font-size: 2rem;
+				border-radius: 5px;
+				font-weight: bold;
+				background-color: $secondary-color;
+				color: $first-color;
+				transition: background-color 0.3s;
+
+				i {
+					padding-left: 1rem;
+				}
+
+				&:hover {
+					background-color: $secondary-hover;
+				}
+			}
+
+			&-second-link {
+				background-color: $biology-main-color;
+
+				&:hover {
+					background-color: $biology-hover-color;
+				}
+			}
+		}
+	}
+}
+
+// SEKCJA FAQ
+
+.faq {
+	text-align: center;
+
+	
+
+	.faq-p {
+		font-size: 2.3rem;
+		margin-bottom: 1rem;
+		color: $secondary-color;
+	}
+
+	.faq-heading {
+		font-size: 4rem;
+		margin-bottom: 8rem;
+	}
+	.accordion {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		width: 1200px;
+
+		.content-box {
+			position: relative;
+			margin: 1.5rem 1rem;
+			width: 45%;
+
+			.question {
+				display: flex;
+				padding: 1.8rem 1.5rem;
+				font-size: 1.8rem;
+				font-weight: bold;
+				border-radius: 8px;
+				text-align: left;
+				background-color: #eeeeee;
+				color: $black-color;
+				cursor: pointer;
+
+				.text-wrap {
+					width: 80%;
+				}
+
+				i {
+					position: absolute;
+					top: 50%;
+					font-size: 1.5rem;
+					right: 2rem;
+					padding: 0.8rem;
+					text-align: center;
+					margin-left: 2rem;
+					transform: translateY(-50%);
+					border-radius: 50%;
+					background-color: #fff;
+					color: $secondary-color;
+				}
+			}
+
+			.content {
+				display: none;
+				height: 11rem;
+				padding: 1.5rem;
+				background-color: $white-color;
+				color: $text-color;
+				font-size: 1.6rem;
+				text-align: left;
+				line-height: 2rem;
+				letter-spacing: 1px;
+			}
+		}
+	}
+}
+
+
+
+// MEDIA
+
+@media (max-width: 1200px) {
+	.main {
+		.descriptions {
+			width: 100%;
+			&__box {
+
+				margin-bottom: 3rem;
+
+				img {
+					width: 80px;
+				}
+
+				h2 {
+					font-size: 2rem;
+				}
+
+				p {
+					font-size: 1.6rem;
+				}
+			}
+		}
+
+		.products {
+			
+			&__box {
+				height: 380px;
+
+				&-img1, &-img2 {
+					height: 380px;
+				}
+
+				h2 {
+					font-size: 2.5rem;
+					padding: 2rem;
+				}
+
+				span {
+					font-size: 1.8rem;
+				}
+
+				&-link {
+					margin-top: 4rem;
+					font-size: 1.7rem;
+					padding: 1.7rem 2.2rem;
+				}
+			}
+		}
+	}
+} 
+
+@media (max-width: 992px) {
+	.nav__list,
+	.nav__buttons {
+		display: none;
+	}
+	.nav__burger-icon {
+		display: block;
+	}
+
+	.nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.main {
+		.descriptions {
+			width: 100%;
+			&__box {
+				height: 320px;
+				margin-bottom: 3.5rem;
+				line-height: 2.1rem;
+
+				img {
+					width: 70px;
+				}
+
+				h2 {
+					font-size: 1.7rem;
+				}
+
+				p {
+					font-size: 1.4rem;
+				}
+			}
+		}
+
+		.products {
+			
+			&__box {
+				height: 370px;
+				text-align: center;
+
+				&-img1, &-img2 {
+					height: 370px;
+				}
+
+				h2 {
+					font-size: 2.2rem;
+					padding: 2rem;
+				}
+
+				span {
+					font-size: 1.6rem;
+				}
+
+				&-link {
+					margin-top: 4rem;
+					font-size: 1.5rem;
+					padding: 1.5rem 2rem;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+
+	.main {
+		.descriptions {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+
+			&__box {
+				height: 280px;
+				margin-bottom: 2.5rem;
+
+				img {
+					width: 65px;
+				}
+
+				h2 {
+					font-size: 1.8rem;
+				}
+
+				p {
+					font-size: 1.6rem;
+				}
+			}
+		}
+
+		.products {
+			display: flex;
+			flex-direction: column;
+			margin: 0;
+			width: 100%;
+			 
+			&__box {
+				width: 70%;
+				&:first-child {
+					
+					margin: 3rem;
+				}
+	
+			}
+		}
+	}
+}
+
+@media (max-width: 576px) {
+	.active {
+		width: 100%;
+	}
+
+	.main {
+
+		.descriptions {
+			&__box {
+				line-height: 1.8rem;
+				letter-spacing: .5px;
+				max-width: 80%;
+				margin-bottom: 0;
+				img {
+					width: 65px;
+				}
+
+				h2 {
+					font-size: 1.7rem;
+				}
+
+				p {
+					font-size: 1.5rem;
+				}
+			}
+		}
+		.products {
+
+			&__box {
+				width: 80%;
+				height: 310px;
+
+				&-img1, &-img2 {
+					height: 310px;
+				}
+			}
+		}
+	}
+}
